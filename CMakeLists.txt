@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 set(CMAKE_POLICY_DEFAULT_CMP0135 NEW)
 
-project(superh CXX)
+project(bn-superh-arch CXX)
 
 add_library(${PROJECT_NAME} SHARED
         src/architecture.cpp src/architecture.h src/flags.h src/info.cpp src/instructions.cpp src/instructions.h src/lift.cpp src/opcodes.cpp src/opcodes.h
