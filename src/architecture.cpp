@@ -197,16 +197,17 @@ extern "C" {
 BN_DECLARE_CORE_ABI_VERSION
 
 BINARYNINJAPLUGIN bool CorePluginInit() {
-  const auto sh1 = new SuperH::SH1Architecture("superh-sh1");
-  const auto sh1_cc = new SuperH::SHCallingConvention(sh1);
-  const auto sh2e = new SuperH::SH2EArchitecture("superh-sh2e");
-  const auto sh2e_cc = new SuperH::SHCallingConvention(sh2e);
-
+  BN::Architecture *sh1 = new SuperH::SH1Architecture("superh-sh1");
   BN::Architecture::Register(sh1);
-  BN::Architecture::Register(sh2e);
-
+  const BN::Ref<BN::CallingConvention> sh1_cc =
+      new SuperH::SHCallingConvention(sh1);
   sh1->RegisterCallingConvention(sh1_cc);
   sh1->SetDefaultCallingConvention(sh1_cc);
+
+  BN::Architecture *sh2e = new SuperH::SH2EArchitecture("superh-sh2e");
+  BN::Architecture::Register(sh2e);
+  const BN::Ref<BN::CallingConvention> sh2e_cc =
+      new SuperH::SHCallingConvention(sh2e);
   sh2e->RegisterCallingConvention(sh2e_cc);
   sh2e->SetDefaultCallingConvention(sh2e_cc);
 
